@@ -1,0 +1,16 @@
+This is als mini-FAQ.
+---------------------
+
+Q: How can I exit from command line without removing all it content. Is there
+   a hot-key except ENTER?
+A: You can place this lines in /etc/inputrc or ~/.inputrc:
+	set meta-flag on
+	set convert-meta off
+	set input-meta on
+	set output-meta on
+	"\C-x": "\C-e\C-u\C-d"
+   Restart als and now you can leave command line by pressing Ctrl+x.
+   For more information please see man readline.
+
+Q: I can't see some files. For example .profile or .bashrc.
+A: Press Ctrl+H or see .alsrc for "hidden" keyword.

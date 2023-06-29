@@ -1,0 +1,58 @@
+Welcome to Al-shell.
+--------------------
+
+PREFACE
+
+This is a als-shell, console file manager for Unix. It currently running
+on FreeBSD and Linux. In the nearest future I plan to port it on Solaris.
+I coded this stuff for my own needs and used some ideas from Assistant Shell
+(by Sergei Vovk). It's free for use and modify (only send me your diffs).
+Feel free to contact me via e-mail or FidoNet, especially if you find bug
+or have suggestions.
+
+
+COMPILING AND INSTALLING
+
+First of all you need curses and GNU readline libs installed. 
+In most systems curses is installed by default. Last version of readline 
+you can find at www.gnu.org. Other steps are quite simply:
+
+- Unpack sources
+- edit Makefile to suit you system and taste
+- type make
+- type make install
+
+
+CONFIGURING
+
+Main configuration file is $HOME/.alsrc. It consist of a number of lines,
+one line for one statement. Lines beginning with # are ignored. Just change
+statements for you needs. This file is self-explanatory. To make changes
+has effect, restart als.
+
+
+HOT KEYS
+
+There are several keys not described in .alsrc. They are hard compiled.
+
+Cursor keys     navigation in the directory listing.
+Enter           execute program if file has exec rights or change to
+                selected directory
+Ctrl+L          refresh screen
+Ctrl+H			show/hide hidden files (beginning with dot)
+R               reread current directory
+Backspace       cd to parent directory
+Space           tag current file
++               tag files by mask
+-               untag files by mask
+0               quit als
+
+In command line try to use cursor keys and Tab for autocompletion.
+
+
+CONTACTS
+
+Andrew Ledkov 
+e-mail: cloud@al.ru, ledkov@yahoo.com 
+FidoNet: 2:5048/7.60
+

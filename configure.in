@@ -1,0 +1,59 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(main.C)
+AC_CONFIG_HEADER(config.h)
+AC_CANONICAL_HOST
+
+case "$host" in
+	*-netbsd*)
+	AC_DEFINE(NETBSD)
+	;;
+	*-openbsd*)
+	AC_DEFINE(OPENBSD)
+	;;
+	*-linux*)
+	AC_DEFINE(LINUX)
+	;;
+	*-freebsd*)
+	AC_DEFINE(FREEBSD)
+	;;
+	*-bsdi*)
+	AC_DEFINE(BSDI)
+	;;
+esac
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+
+dnl Checks for libraries.
+AC_CHECK_LIB(curses, tgetent,,exit 1)
+AC_CHECK_LIB(curses, tgetnum,,exit 1)
+AC_CHECK_LIB(curses, tgetstr,,exit 1)
+AC_CHECK_LIB(curses, tgoto,,exit 1)
+AC_CHECK_LIB(curses, tputs,,exit 1)
+AC_CHECK_LIB(curses, tparm,,exit 1)
+AC_CHECK_LIB(readline, rl_line_buffer,,exit 1)
+AC_CHECK_LIB(readline, rl_end,,exit 1)
+AC_CHECK_LIB(readline, rl_point,,exit 1)
+AC_CHECK_LIB(readline, rl_startup_hook,,exit 1)
+AC_CHECK_LIB(readline, readline,,exit 1)
+AC_CHECK_LIB(readline, add_history,,exit 1)
+
+dnl Checks for header files.
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_CHECK_HEADERS(fcntl.h limits.h termio.h termios.h term.h unistd.h string.h)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_OFF_T
+AC_STRUCT_TM
+AC_TYPE_UID_T
+
+dnl Checks for library functions.
+AC_FUNC_FNMATCH
+AC_PROG_GCC_TRADITIONAL
+AC_TYPE_SIGNAL
+AC_CHECK_FUNCS(getcwd gethostname mkdir)
+
+AC_OUTPUT(Makefile)

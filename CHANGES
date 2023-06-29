@@ -1,0 +1,23 @@
+0.3 -> 0.6
+		- system and user rc files parsing.
+		- alsterm.$TERM files added.
+		- bug with long file names fixed (more than 80 chars).
+0.2 -> 0.3
+		- bug with environment variables fixed
+		- new option in .alsrc flinks (follow symlinks when cd)
+		- new option in .alsrc and hot-key Ctrl-H for show and hide
+	 	files in directory which names beginning with dot.
+0.1 -> 0.2
+		- environment variables in .alsrc and command line
+		- reread directory with R
+		- display current working directory with long path cutting
+		- display user@hostname in left upper corner
+		- tag files by mask
+		- clock
+		- scrolling bug fixed
+0.0 -> 0.1
+		- rc file for als
+		- change directory with cd from command line
+		- command line preprocessor for tagged files
+		- signals (Ctrl-C disable)
+		- line scrolling patch

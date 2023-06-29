@@ -1,0 +1,46 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+INSTDIR=@bindir@
+CC=@CC@
+CFLAGS=@CFLAGS@
+ALS_OBJ=main.o alsconf.o dirctl.o dirlst.o tty.o trm.o
+AKEYS_OBJ=tty.o trm.o alskeys.o
+ALS=als
+AKEYS=alskeys
+RM=rm -f
+INSTALL=@INSTALL@
+ALS_LIBS=-lcurses -lreadline
+AKEYS_LIBS=-lcurses
+OBJECTS=$(ALS_OBJ) $(AKEYS_OBJ)
+LIBS=$(ALS_LIBS) $(AKEYS_LIBS)
+
+all: $(ALS) $(AKEYS)
+
+$(ALS): $(ALS_OBJ)
+	$(CC) $(LDFLAGS) -o $@ $(ALS_OBJ) $(ALS_LIBS)
+
+$(AKEYS): $(AKEYS_OBJ)
+	$(CC) $(LDFLAGS) -o $@ $(AKEYS_OBJ) $(AKEYS_LIBS)
+
+%.o: %.C
+	$(CC) $(CFLAGS) -c $<
+
+clean:	
+	$(RM) $(OBJECTS) $(ALS) $(AKEYS) core config.h config.cache config.log
+
+install:
+	strip $(ALS)
+	strip $(AKEYS)
+	$(INSTALL) $(ALS) $(BINDIR)
+	$(INSTALL) $(AKEYS) $(BINDIR)
+
+.C.o:
+	$(CC) -c ${CFLAGS} $<
+
+main.o:		main.C main.h config.h trm.h dirctl.h dirlst.h tty.h
+alsconf.o:	alsconf.C main.h trm.h
+dirctl.o:	dirctl.C main.h trm.h
+dirlst.o:	dirlst.C dirlst.h main.h trm.h
+trm.o:		trm.C trm.h tty.h config.h
+tty.o:		tty.C tty.h config.h
+alskeys.o:	alskeys.C tty.h trm.h

@@ -1,0 +1,8 @@
+
+#undef NETBSD
+#undef OPENBSD
+#undef LINUX
+#undef FREEBSD
+#undef BSDI
+#undef HAVE_TERMIO_H
+#undef HAVE_TERMIOS_H

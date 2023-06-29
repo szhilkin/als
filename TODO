@@ -1,0 +1,7 @@
+- escape from command line with hot-key
+- mail box check
++ system and user rc-file
++ bug with executing files beginning from cd
++ load key-codes from file for different type of terminals
++ bug with long files (more than 80 chars) fixed
+- show hidden files must be command in alsrc

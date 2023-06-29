@@ -1,0 +1,119 @@
+# alsrc config file example
+# rename it to .alsrc and place in home dir
+#
+
+# maximal count of lines for directory listing 
+# default 10
+ 
+maxlines:10
+
+# turn on ansi colors (for ansi compatible terminals)
+
+ansicolor:yes
+
+# display directories and files with different colors
+
+colordirs:yes
+
+# files and dirs colors scheme. (if colordirs=yes)
+# first field is attribute, second - foreground color, third - background
+# for b/w terminals works only first field.
+
+a_normal:normal:white:black
+#a_help:reverse:black:cyan
+a_help:normal:black:cyan
+#a_marker:reverse:black:white
+a_marker:normal:black:white
+a_dir:bold:white:black
+a_link:bold:cyan:black
+a_exec:bold:green:black
+a_err:bold:red:black
+a_tag:bold:yellow:black
+
+# show clock in right upper corner (default yes)
+clock:yes
+
+# follow symlinks (default no)
+flinks:yes
+
+# show hidden files (with dot in first position) default yes
+hidden:no
+
+# keyboard commands
+# 1 field:  key name
+# 2 field:  file mask, if empty, then any file accepted
+# 3 field:  what to place in command line, there are special symbols
+#           ## means all tagged files
+#           #@ current file under cursor
+# 4 field:  flags
+#           d - execute command if current file is directory
+#           l - execute command if current file is link
+#           x - execute command if current file has execution rights
+#           ! - execute immediately, without editing command line
+#           p - requires addidional preprocessing for special symbols
+#           + - execute command if exist some tagged files (d,l,x has 
+            no meaning in that case)
+
+K_1:::
+K_F1:::
+
+K_3::cat ## | less:+
+K_3::ls #@:dp!
+K_3:*.tgz:tar tvfz #@ | less:p
+K_3:*.tar.gz:tar tvfz #@ | less:p
+K_3:*.gz:cat #@ | gzip -d | less:p
+K_3:*.html:lynx #@:p
+K_3:*.htm:lynx #@:p
+K_3::less #@:p
+
+K_F3::cat ## | less:+
+K_F3::ls #@:dp!
+K_F3::strings #@ | less:xp
+K_F3:*.tgz:tar tvfz #@ | less:p
+K_F3::less #@:p
+
+K_4:*.tgz:tar xvfz #@:p
+K_4::vi #@:p
+K_F4::emacs #@:p
+
+K_5::cp -R ##:+
+K_5::cp -R #@:dp
+K_5::cp #@:p
+K_F5::cp -R ##:+
+K_F5::cp -R #@:dp
+K_F5::cp #@:p
+
+K_6::mv ##:+
+K_6::mv #@ #@:p
+K_F6::mv ##:+
+K_F6::mv #@ #@:p
+
+K_7::mkdir :
+K_F7::mkdir :
+
+K_8::rm -rf ##:+
+K_8::rm -rf #@:dp
+K_8::rm -f #@:p
+K_F8::rm -rf ##:+
+K_F8::rm -rf #@:dp
+K_F8::rm -f #@:p
+
+K_F12::cd /:!
+
+K_L::ls -l ## | less:+!
+K_L::ls -l #@:p!
+
+K_F::file ## | more:+!
+K_F::file #@:p!
+
+K_U::cd /usr:!
+K_V::cd /var:!
+K_E::cd /etc:!
+K_H::cd $HOME:!
+K_W::cd $HOME/work:!
+K_D::ls -l:!
+K_T::tail -f #@:p!
+K_CTRL_F::mount /mnt/floppy:!
+K_ALT_F::umount /mnt/floppy:!
+K_CTRL_D::mount /mnt/cdrom:!
+K_ALT_D::umount /mnt/cdrom:!
